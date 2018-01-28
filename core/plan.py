@@ -57,7 +57,9 @@ class Plan:
                 self._graph.nodes[new_step.start]['label'] = new_step.label
                 self._graph.nodes[new_step.start]['color'] = self._bag_colors[new_step.bag - 1]
             else:
-                self._graph.add_node(new_step.start, label=new_step.label, color=self._bag_colors[new_step.bag - 1])
+                self._graph.add_node(new_step.start,
+                                     label=new_step.label,
+                                     color=self._bag_colors[new_step.bag - 1])
 
             # 'next' nodes that don't exist yet are created with blank attributes
             if new_step.next not in self._graph.nodes:
@@ -73,9 +75,9 @@ class Plan:
     def to_topological_dict(self):
         if self.validate():
             result = []
-            #for node in nx.lexicographical_topological_sort(self._graph):
-            #    meta = self._graph.nodes[node]['meta'] if 'meta' in self._graph.nodes[node] else None
-            #    result.append({node: meta['next'] if meta is not None else None})
+            for node in nx.lexicographical_topological_sort(self._graph, key=lambda x: str(x)):
+                next_nodes = list(self._graph.successors(node))
+                result.append({node: next_nodes[0] if len(next_nodes) > 0 else None})
             return result
 
     def plot(self, path, *, layout='neato', format=None):
