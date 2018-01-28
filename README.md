@@ -1,10 +1,10 @@
 # Brickflow - plan your next big brick build
 Building big brick projects with friends can easily turn into frustration when everybody wants to contribute at the same time. Quickly, people start fighting over building steps and bricks.
 The Brickflow tool avoids those dramas by allowing the master builder to group independent build steps from the build instructions into groups and define their dependencies.
-Brickflow then draws a graph of all the build groups. Using a print out of the graph during the build allows the builders to pick a group that has all its dependencies resolved,
+Brickflow then draws a graph of all the build groups. Using a print-out of the graph during the build allows the builders to pick a group that has all its dependencies resolved,
 build this group without interfering with other builders and finally tick off the group so everybody can track the progress.
 
-Basically, Brickflow brings project management (think work breakdown structure) to building brick models.
+Basically, Brickflow brings project management (think work-breakdown-structure) to building brick models.
 
 ## Build definition
 Each build is defined in a YAML file. It defines the title of the build, a list of colors that are used to visually identify
@@ -42,8 +42,10 @@ groups:
 
 Each independent group consists of four fields that are required in order to define the dependencies and draw the graph.
 
-| start       |   The build step number from the instructions the group starts with |
-| end         |   The build step number from the instructions the group ends with |
+| field       | description |
+| -----       | ----- |
+| start       | The build step number from the instructions the group starts with |
+| end         | The build step number from the instructions the group ends with |
 | bag         | The bag number as printed on the bag. Make sure there are at least as many colors defined in `bagcolors` as you have bags. |
 | next        | The start step number of the build group that requires this group to be completed |
 
@@ -66,6 +68,8 @@ To facilitate the use of Brickflow on those platforms, we recommend to use the p
 
 The Docker container exposes three volumes:
 
+| volume      | description |
+| -----       | ----- |
 | /app | Use this volume to mount a local folder of the brickflow source code inside the container. Only used for development purposes |
 | /data | Use this volume to mount a folder with the YAML files |
 | /output | Use this volume to mount a folder for storing the output graph images |
