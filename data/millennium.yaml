@@ -1,0 +1,51 @@
+title: "Millennium Build"
+
+bagcolors:
+  - "cornflowerblue"
+  - "darkorchid"
+  - "coral"
+  - "chartreuse2"
+  - "gold1"
+  - "indigo"
+  - "olivedrab2"
+  - "royalblue1"
+  - "salmon2"
+  - "springgreen"
+  - "violetred3"
+  - "turquoise3"
+  - "orangered2"
+  - "slategray2"
+  - "yellowgreen"
+  - "lightseagreen"
+  - "mediumturquoise"
+
+groups:
+  - start: 1
+    end: 7
+    bag: 1
+    next: 14
+
+  - start: 8
+    end: 13
+    bag: 1
+    next: 14
+
+  - start: 15
+    end: 15
+    bag: 1
+    next: 14
+
+  - start: 16
+    end: 16
+    bag: 1
+    next: 14
+
+  - start: 14
+    end: 14
+    bag: 1
+    next: 23
+
+  - start: 17
+    end: 22
+    bag: 1
+    next: 23
