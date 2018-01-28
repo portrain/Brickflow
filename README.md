@@ -58,9 +58,46 @@ moderately large piece followed by the steps to build it. Use the first and last
 3. If the integration step is only a single build step set the `start` amd `end` field to the same number.
 4. The `next` field of an integration step should point to the next integration step in which new, independent pieces are added to the model. 
 
+## Requirements
+Brickflow is written in Python and requires Python 3.6+. It uses the networkX library for handling the build group dependency graph and graphviz for drawing.
+Its Python dependencies are specified in `requirements.txt`. It has only been tested on Linux, but should also run on Windows and MacOS.
+
 ## Run Brickflow
 
-tbw
+The main file to run Brickflow is `brickflow.py`. In order to see the available options run:
+```bash
+python brickflow.py --help
+```
+
+There are three commands available: `validate`, `print` and `plot`.
+
+### Validate
+The `validate` command checks whether the specified definition file is valid and can be processed. It takes the path to the
+definition file as its only argument:
+
+```bash
+python brickflow.py validate /my/local/data/millennium.yaml
+```
+
+### Print
+The `print` command prints a dependency resolved build plan to the command line. Under the hood, the graph is topologically sorted
+and the first and next step are printed:
+
+```bash
+python brickflow.py print /my/local/data/millennium.yaml
+```
+
+### Plot
+The `plot` command is the main command of Brickflow. It generates an image of the dependency graph. It takes the path to the definition
+file as well as the path to the output file image as arguments. It offers two options:
+* `--layout` specifies the layout engine of graphviz that should be used. Valid values are: `neato`, `dot`, `twopi`, `circo`, `fdp`, `nop`
+* `--format` specifies the output format. If this option is not given, the format will be guessed from the file extension of the `output` path.
+Valid values are: `gif`, `jpeg`, `pdf`, `png`, `svg`
+
+```bash
+python brickflow.py plot --layout=dot /my/local/data/millennium.yaml /my/local/output/plan.png
+```
+
 
 ## Using Docker makes your life a lot easier 
 Installing the requirements of Brickflow (particularly graphviz and pygraphviz) can be difficult on platforms such as Windows.
