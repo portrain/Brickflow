@@ -15,6 +15,6 @@ VOLUME /app
 VOLUME /data
 VOLUME /output
 
-ENV command --help
+ENV args --help
 
-CMD ["sh", "-c", "python brickflow.py ${command}"]
+CMD ["sh", "-c", "python brickflow.py ${args}"]
