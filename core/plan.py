@@ -36,6 +36,7 @@ class Plan:
         self._title = ''
         self._graph = None
         self._bag_colors = []
+        self._shapes = {}
 
     @property
     def is_loaded(self):
@@ -47,6 +48,7 @@ class Plan:
 
         self._title = plan_dict['title']
         self._bag_colors = plan_dict['bagcolors']
+        self._shapes = plan_dict['shapes']
 
         self._graph = nx.DiGraph()
         for group in plan_dict['groups']:
@@ -56,10 +58,13 @@ class Plan:
             if new_step.start in self._graph.nodes:
                 self._graph.nodes[new_step.start]['label'] = new_step.label
                 self._graph.nodes[new_step.start]['color'] = self._bag_colors[new_step.bag - 1]
+                for key, value in self._shapes['integration'].items():
+                    self._graph.nodes[new_step.start][key] = value
             else:
                 self._graph.add_node(new_step.start,
                                      label=new_step.label,
-                                     color=self._bag_colors[new_step.bag - 1])
+                                     color=self._bag_colors[new_step.bag - 1],
+                                     **{k: v for k, v in self._shapes['independent'].items()})
 
             # 'next' nodes that don't exist yet are created with blank attributes
             if new_step.next not in self._graph.nodes:
@@ -90,8 +95,8 @@ class Plan:
             agraph.graph_attr['sep'] = '+20,20'
             agraph.graph_attr['pad'] = '1.0'
 
-            agraph.node_attr['shape'] = 'box'
-            agraph.node_attr['margin'] = '0.2,0.2'
+            agraph.node_attr['shape'] = 'folder'
+            agraph.node_attr['margin'] = '0.3,0.3'
             agraph.node_attr['penwidth'] = '3'
 
             agraph.edge_attr['penwidth'] = '2'

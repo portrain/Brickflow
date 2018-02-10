@@ -19,6 +19,15 @@ bagcolors:
   - "lightseagreen"
   - "mediumturquoise"
 
+shapes:
+  independent:
+    shape: "folder"
+    margin: "0.3,0.3"
+  integration:
+    shape: "circle"
+    margin: "0.08,0.08"
+    peripheries: "2"
+
 groups:
   # ---------------------------------
   #              Bag 1
@@ -601,8 +610,3 @@ groups:
     end: 1379
     bag: 17
     next: 1380
-
-
-
-
-

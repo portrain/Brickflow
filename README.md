@@ -20,6 +20,14 @@ bagcolors:
   - "darkorchid"
   - "coral"
 
+shapes:
+  independent:
+    shape: "folder"
+    margin: "0.3,0.3"
+  integration:
+    shape: "octagon"
+    margin: "0.1,0.1"
+
 groups:
   # ---------------------------------
   #              Bag 1
@@ -50,7 +58,7 @@ Each independent group consists of four fields that are required in order to def
 | next        | The start step number of the build group that requires this group to be completed |
 
 This definition makes use of the fact that most big brick builds are based around the process of assembling smaller pieces first and then
-attaching those to an ever growing model. In order to turn the instructions of a brick set into the definition of the YAM file we found
+attaching those to an ever growing model. In order to turn the instructions of a brick set into the definition of the YAML file we found
 the following rules helpful:
 1. Identify pieces that can be build independently. Often the instructions are already structured such that they show a preview of a
 moderately large piece followed by the steps to build it. Use the first and last step number of this piece for a group in the definition file.
